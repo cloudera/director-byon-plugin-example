@@ -64,7 +64,7 @@ public enum BYONCredentialsProviderConfigurationProperty implements Configuratio
 
   @Override
   public String getMissingValueErrorMessage() {
-    return null;
+    return "Configuration property not found: " + name();
   }
 
   @Override
