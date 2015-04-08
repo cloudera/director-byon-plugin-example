@@ -141,7 +141,8 @@ public class BYONComputeProvider extends AbstractComputeProvider<BYONComputeInst
   }
 
   @Override
-  public Map<String, InstanceState> getInstanceState(Collection<String> instanceIds) {
+  public Map<String, InstanceState> getInstanceState(BYONComputeInstanceTemplate template,
+      Collection<String> instanceIds) {
     Map<String, InstanceState> result = new HashMap<String, InstanceState>();
     for (String currentId : instanceIds) {
       if (allocations.containsKey(currentId)) {
@@ -154,7 +155,7 @@ public class BYONComputeProvider extends AbstractComputeProvider<BYONComputeInst
   }
 
   @Override
-  public void delete(Collection<String> instanceIds) throws InterruptedException {
+  public void delete(BYONComputeInstanceTemplate template, Collection<String> instanceIds) throws InterruptedException {
     for (String currentId : instanceIds) {
       String host = this.allocations.remove(currentId);
       if (host != null) {

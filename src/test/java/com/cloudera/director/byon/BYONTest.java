@@ -141,7 +141,7 @@ public class BYONTest {
 
     // Delete the resources
 
-    compute.delete(instanceIds);
+    compute.delete(template, instanceIds);
 
     // TODO loop until deleted
 
