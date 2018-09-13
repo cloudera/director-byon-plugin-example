@@ -25,6 +25,8 @@
     <version>1.0.0</version>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <launcher-class>com.cloudera.director.byon.BYONLauncher</launcher-class>
         <director-spi-v1.version>1.0.0</director-spi-v1.version>
         <junit.version>4.12</junit.version>

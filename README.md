@@ -1,15 +1,15 @@
-## Example BYON (Bring Your Own Nodes) plugin for Cloudera Director
+## Example BYON (Bring Your Own Nodes) plugin for Cloudera Altus Director
 
 * [Introduction](#introduction)
 * [Important notice](#important-notice)
 
 ### Introduction
 
-This project defines an [open source](https://github.com/cloudera/director-spi/blob/master/LICENSE.txt) example plugin implementing the [Cloudera Director Service Provider Interface](https://github.com/cloudera/director-spi).
+This project defines an [open source](https://github.com/cloudera/director-spi/blob/master/LICENSE.txt) example plugin implementing the [Cloudera Altus Director Service Provider Interface](https://github.com/cloudera/director-spi).
 
 The plugin implements a compute provider that allocates compute instances from a fixed pool of existing servers.
 
-Although the plugin is not suitable for production use, it is loadable by Cloudera Director, and illustrates many of the fundamentals of plugin development.
+Although the plugin is not suitable for production use, it is loadable by Cloudera Altus Director, and illustrates many of the fundamentals of plugin development.
 
 ### Important notice
 

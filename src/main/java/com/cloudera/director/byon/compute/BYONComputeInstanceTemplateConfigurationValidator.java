@@ -25,7 +25,7 @@ import com.cloudera.director.spi.v1.util.Preconditions;
 /**
  * Validates BYON compute instance template configuration.
  */
-@SuppressWarnings({"unused", "FieldCanBeLocal"})
+@SuppressWarnings({"unused", "FieldCanBeLocal" })
 public class BYONComputeInstanceTemplateConfigurationValidator implements ConfigurationValidator {
 
   /**
