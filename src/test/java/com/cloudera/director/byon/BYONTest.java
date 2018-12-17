@@ -17,20 +17,20 @@
 package com.cloudera.director.byon;
 
 import static com.cloudera.director.byon.compute.BYONComputeProviderConfigurationPropertyToken.HOSTS;
-import static com.cloudera.director.spi.v1.compute.ComputeInstanceTemplate.ComputeInstanceTemplateConfigurationPropertyToken.IMAGE;
-import static com.cloudera.director.spi.v1.compute.ComputeInstanceTemplate.ComputeInstanceTemplateConfigurationPropertyToken.TYPE;
+import static com.cloudera.director.spi.v2.compute.ComputeInstanceTemplate.ComputeInstanceTemplateConfigurationPropertyToken.IMAGE;
+import static com.cloudera.director.spi.v2.compute.ComputeInstanceTemplate.ComputeInstanceTemplateConfigurationPropertyToken.TYPE;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
-import com.cloudera.director.spi.v1.compute.ComputeInstance;
-import com.cloudera.director.spi.v1.compute.ComputeInstanceTemplate;
-import com.cloudera.director.spi.v1.compute.ComputeProvider;
-import com.cloudera.director.spi.v1.model.ConfigurationProperty;
-import com.cloudera.director.spi.v1.model.util.SimpleConfiguration;
-import com.cloudera.director.spi.v1.provider.CloudProvider;
-import com.cloudera.director.spi.v1.provider.CloudProviderMetadata;
-import com.cloudera.director.spi.v1.provider.Launcher;
-import com.cloudera.director.spi.v1.provider.ResourceProviderMetadata;
+import com.cloudera.director.spi.v2.compute.ComputeInstance;
+import com.cloudera.director.spi.v2.compute.ComputeInstanceTemplate;
+import com.cloudera.director.spi.v2.compute.ComputeProvider;
+import com.cloudera.director.spi.v2.model.ConfigurationProperty;
+import com.cloudera.director.spi.v2.model.util.SimpleConfiguration;
+import com.cloudera.director.spi.v2.provider.CloudProvider;
+import com.cloudera.director.spi.v2.provider.CloudProviderMetadata;
+import com.cloudera.director.spi.v2.provider.Launcher;
+import com.cloudera.director.spi.v2.provider.ResourceProviderMetadata;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -122,7 +122,7 @@ public class BYONTest {
     List<String> instanceIds = Arrays.asList(UUID.randomUUID().toString());
 
     compute.allocate(template, instanceIds, 1);
-    Collection<ComputeInstance<ComputeInstanceTemplate>> instances = compute.find(template, instanceIds);
+    Collection<? extends ComputeInstance<ComputeInstanceTemplate>> instances = compute.find(template, instanceIds);
 
     assertEquals(1, instances.size());
 
@@ -133,7 +133,7 @@ public class BYONTest {
 
     // Run a find by ID
 
-    Collection<ComputeInstance<ComputeInstanceTemplate>> found = compute.find(template, instanceIds);
+    Collection<? extends ComputeInstance<ComputeInstanceTemplate>> found = compute.find(template, instanceIds);
     assertEquals(1, found.size());
 
     // Delete the resources

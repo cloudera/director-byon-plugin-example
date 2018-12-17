@@ -22,8 +22,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.cloudera.director.byon.BYONCloudProvider;
 import com.cloudera.director.byon.BYONLauncher;
-import com.cloudera.director.spi.v1.model.util.SimpleConfiguration;
-import com.cloudera.director.spi.v1.provider.CloudProvider;
+import com.cloudera.director.spi.v2.model.util.SimpleConfiguration;
+import com.cloudera.director.spi.v2.provider.CloudProvider;
 
 import java.util.Arrays;
 import java.util.Collections;

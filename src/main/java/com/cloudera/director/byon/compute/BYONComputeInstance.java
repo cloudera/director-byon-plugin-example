@@ -16,7 +16,7 @@
 
 package com.cloudera.director.byon.compute;
 
-import com.cloudera.director.spi.v1.compute.util.AbstractComputeInstance;
+import com.cloudera.director.spi.v2.compute.util.AbstractComputeInstance;
 
 import java.net.InetAddress;
 import java.util.HashMap;

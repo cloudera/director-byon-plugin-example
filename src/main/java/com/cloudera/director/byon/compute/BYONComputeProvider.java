@@ -17,20 +17,20 @@
 package com.cloudera.director.byon.compute;
 
 import com.cloudera.director.byon.util.HostGroups;
-import com.cloudera.director.spi.v1.compute.util.AbstractComputeInstance;
-import com.cloudera.director.spi.v1.compute.util.AbstractComputeProvider;
-import com.cloudera.director.spi.v1.model.ConfigurationProperty;
-import com.cloudera.director.spi.v1.model.ConfigurationValidator;
-import com.cloudera.director.spi.v1.model.Configured;
-import com.cloudera.director.spi.v1.model.InstanceState;
-import com.cloudera.director.spi.v1.model.InstanceStatus;
-import com.cloudera.director.spi.v1.model.LocalizationContext;
-import com.cloudera.director.spi.v1.model.Resource;
-import com.cloudera.director.spi.v1.model.util.CompositeConfigurationValidator;
-import com.cloudera.director.spi.v1.model.util.SimpleInstanceState;
-import com.cloudera.director.spi.v1.provider.ResourceProviderMetadata;
-import com.cloudera.director.spi.v1.provider.util.SimpleResourceProviderMetadata;
-import com.cloudera.director.spi.v1.util.ConfigurationPropertiesUtil;
+import com.cloudera.director.spi.v2.compute.util.AbstractComputeInstance;
+import com.cloudera.director.spi.v2.compute.util.AbstractComputeProvider;
+import com.cloudera.director.spi.v2.model.ConfigurationProperty;
+import com.cloudera.director.spi.v2.model.ConfigurationValidator;
+import com.cloudera.director.spi.v2.model.Configured;
+import com.cloudera.director.spi.v2.model.InstanceState;
+import com.cloudera.director.spi.v2.model.InstanceStatus;
+import com.cloudera.director.spi.v2.model.LocalizationContext;
+import com.cloudera.director.spi.v2.model.Resource;
+import com.cloudera.director.spi.v2.model.util.CompositeConfigurationValidator;
+import com.cloudera.director.spi.v2.model.util.SimpleInstanceState;
+import com.cloudera.director.spi.v2.provider.ResourceProviderMetadata;
+import com.cloudera.director.spi.v2.provider.util.SimpleResourceProviderMetadata;
+import com.cloudera.director.spi.v2.util.ConfigurationPropertiesUtil;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -43,6 +43,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Logger;
 
 /**
@@ -118,7 +119,7 @@ public class BYONComputeProvider
   }
 
   @Override
-  public synchronized void allocate(BYONComputeInstanceTemplate template,
+  public synchronized Collection<BYONComputeInstance> allocate(BYONComputeInstanceTemplate template,
       Collection<String> instanceIds, int minCount) throws InterruptedException {
 
     if (availableHosts.size() < minCount) {
@@ -129,17 +130,21 @@ public class BYONComputeProvider
     Iterator<String> instanceIdsIter = instanceIds.iterator();
     int limit = Math.min(availableHosts.size(), instanceIds.size());
 
+    List<BYONComputeInstance> result = new ArrayList<>();
+
     // Try to allocate as many preferred hosts as possible first
 
     for (String host : template.getPreferredHosts()) {
       try {
         //noinspection ResultOfMethodCallIgnored
-        InetAddress.getByName(host);
+        InetAddress hostAddress = InetAddress.getByName(host);
         if (availableHosts.remove(host)) {
           String id = instanceIdsIter.next();
 
           allocations.put(id, host);
           LOG.info(String.format("New preferred allocation: %s -> %s", host, id));
+
+          result.add(new BYONComputeInstance(template, id, hostAddress));
 
           limit--;
           if (limit == 0) {
@@ -161,10 +166,18 @@ public class BYONComputeProvider
       availableHosts.removeFirst();
       allocations.put(id, host);
 
+      try {
+        result.add(new BYONComputeInstance(template, id, InetAddress.getByName(host)));
+      } catch (UnknownHostException e) {
+        throw new IllegalArgumentException(e);
+      }
+
       LOG.info(String.format("New allocation: %s -> %s", host, id));
 
       limit--;
     }
+
+    return result;
   }
 
   @Override
@@ -172,7 +185,7 @@ public class BYONComputeProvider
       BYONComputeInstanceTemplate template, Collection<String> instanceIds)
       throws InterruptedException {
 
-    List<BYONComputeInstance> result = new ArrayList<BYONComputeInstance>();
+    List<BYONComputeInstance> result = new ArrayList<>();
     for (String currentId : instanceIds) {
       String host = allocations.get(currentId);
       if (host != null) {
@@ -213,4 +226,11 @@ public class BYONComputeProvider
       LOG.info(String.format("Deleted allocation: %s -> %s", host, currentId));
     }
   }
+
+  @Override
+  public Map<String, Set<String>> getHostKeyFingerprints(BYONComputeInstanceTemplate template,
+      Collection<String> instanceIds) {
+    return Collections.emptyMap();
+  }
+
 }

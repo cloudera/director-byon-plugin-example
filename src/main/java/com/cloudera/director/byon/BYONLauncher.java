@@ -16,9 +16,9 @@
 
 package com.cloudera.director.byon;
 
-import com.cloudera.director.spi.v1.model.Configured;
-import com.cloudera.director.spi.v1.provider.CloudProvider;
-import com.cloudera.director.spi.v1.provider.util.AbstractLauncher;
+import com.cloudera.director.spi.v2.model.Configured;
+import com.cloudera.director.spi.v2.provider.CloudProvider;
+import com.cloudera.director.spi.v2.provider.util.AbstractLauncher;
 
 import java.util.Collections;
 import java.util.Locale;

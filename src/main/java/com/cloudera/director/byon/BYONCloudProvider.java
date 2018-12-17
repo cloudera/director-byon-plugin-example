@@ -17,15 +17,15 @@
 package com.cloudera.director.byon;
 
 import com.cloudera.director.byon.compute.BYONComputeProvider;
-import com.cloudera.director.spi.v1.model.ConfigurationProperty;
-import com.cloudera.director.spi.v1.model.Configured;
-import com.cloudera.director.spi.v1.model.LocalizationContext;
-import com.cloudera.director.spi.v1.provider.CloudProviderMetadata;
-import com.cloudera.director.spi.v1.provider.ResourceProvider;
-import com.cloudera.director.spi.v1.provider.ResourceProviderMetadata;
-import com.cloudera.director.spi.v1.provider.util.AbstractCloudProvider;
-import com.cloudera.director.spi.v1.provider.util.SimpleCloudProviderMetadataBuilder;
-import com.cloudera.director.spi.v1.provider.util.SimpleCredentialsProviderMetadata;
+import com.cloudera.director.spi.v2.model.ConfigurationProperty;
+import com.cloudera.director.spi.v2.model.Configured;
+import com.cloudera.director.spi.v2.model.LocalizationContext;
+import com.cloudera.director.spi.v2.provider.CloudProviderMetadata;
+import com.cloudera.director.spi.v2.provider.ResourceProvider;
+import com.cloudera.director.spi.v2.provider.ResourceProviderMetadata;
+import com.cloudera.director.spi.v2.provider.util.AbstractCloudProvider;
+import com.cloudera.director.spi.v2.provider.util.SimpleCloudProviderMetadataBuilder;
+import com.cloudera.director.spi.v2.provider.util.SimpleCredentialsProviderMetadata;
 
 import java.util.Collections;
 import java.util.List;

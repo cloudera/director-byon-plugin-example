@@ -16,11 +16,11 @@
 
 package com.cloudera.director.byon.compute;
 
-import com.cloudera.director.spi.v1.model.ConfigurationValidator;
-import com.cloudera.director.spi.v1.model.Configured;
-import com.cloudera.director.spi.v1.model.LocalizationContext;
-import com.cloudera.director.spi.v1.model.exception.PluginExceptionConditionAccumulator;
-import com.cloudera.director.spi.v1.util.Preconditions;
+import com.cloudera.director.spi.v2.model.ConfigurationValidator;
+import com.cloudera.director.spi.v2.model.Configured;
+import com.cloudera.director.spi.v2.model.LocalizationContext;
+import com.cloudera.director.spi.v2.model.exception.PluginExceptionConditionAccumulator;
+import com.cloudera.director.spi.v2.util.Preconditions;
 
 /**
  * Validates BYON compute instance template configuration.

@@ -18,9 +18,9 @@ package com.cloudera.director.byon;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.cloudera.director.spi.v1.model.util.SimpleConfiguration;
-import com.cloudera.director.spi.v1.provider.CloudProvider;
-import com.cloudera.director.spi.v1.provider.Launcher;
+import com.cloudera.director.spi.v2.model.util.SimpleConfiguration;
+import com.cloudera.director.spi.v2.provider.CloudProvider;
+import com.cloudera.director.spi.v2.provider.Launcher;
 
 import java.util.Collections;
 import java.util.Locale;

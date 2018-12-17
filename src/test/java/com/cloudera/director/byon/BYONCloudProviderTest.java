@@ -20,9 +20,9 @@ import static com.cloudera.director.byon.compute.BYONComputeProviderConfiguratio
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.cloudera.director.byon.compute.BYONComputeProvider;
-import com.cloudera.director.spi.v1.model.util.SimpleConfiguration;
-import com.cloudera.director.spi.v1.provider.CloudProvider;
-import com.cloudera.director.spi.v1.provider.ResourceProvider;
+import com.cloudera.director.spi.v2.model.util.SimpleConfiguration;
+import com.cloudera.director.spi.v2.provider.CloudProvider;
+import com.cloudera.director.spi.v2.provider.ResourceProvider;
 
 import java.util.Collections;
 import java.util.HashMap;

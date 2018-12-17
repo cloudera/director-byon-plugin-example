@@ -16,12 +16,12 @@
 
 package com.cloudera.director.byon.compute;
 
-import com.cloudera.director.spi.v1.model.ConfigurationProperty;
-import com.cloudera.director.spi.v1.model.util.SimpleConfigurationPropertyBuilder;
+import com.cloudera.director.spi.v2.model.ConfigurationProperty;
+import com.cloudera.director.spi.v2.model.util.SimpleConfigurationPropertyBuilder;
 
 // Fully qualifying class name due to compiler bug
 public enum BYONComputeInstanceTemplateConfigurationPropertyToken
-    implements com.cloudera.director.spi.v1.model.ConfigurationPropertyToken {
+    implements com.cloudera.director.spi.v2.model.ConfigurationPropertyToken {
 
   PREFERRED_HOSTS(new SimpleConfigurationPropertyBuilder()
       .configKey("preferredHosts")
